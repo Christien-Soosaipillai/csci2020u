@@ -1,0 +1,46 @@
+apply plugin: 'java'
+
+
+repositories{
+    mavenCentral();
+}
+
+
+buildscript {
+   repositories {
+      flatDir dirs: '/home/christien/Desktop/csci2020u/proguard5.3.2/lib'
+   }
+   dependencies {
+      classpath ':proguard'
+   }
+}
+
+task (minify, dependsOn: 'jar', type: proguard.gradle.ProGuardTask) {
+   configuration 'proguard.cfg'
+    
+   injars 'build/libs/lab03-1.0.jar'
+   outjars 'build/libs/lab03-1.0.min.jar'
+}
+
+
+sourceCompatibility = 1.7
+version = '1.0'
+jar {
+    manifest {
+        attributes  'Main-Class': 'csci2020u.lab03.CSVDemo',
+                    'Implementation-Title': 'Sample-Gradle',
+                    'Implementation-Version': version
+    }
+}
+
+task(run, type: JavaExec) {
+    main = 'csci2020u.lab03.CSVDemo'
+    classpath = sourceSets.main.runtimeClasspath
+}
+
+
+dependencies {
+    compile group: 'org.apache.commons', 
+            name: 'commons-csv', 
+            version: '1.4'
+}
