@@ -163,6 +163,7 @@ public class Main extends Application {
 
         ObservableList<TestFile> fileRecord = FXCollections.observableArrayList();
         String Name ="";
+        String nameOfFIle;
         File getFile;
         File file = new File(TestFolder);
         String OFFICIALNAME;
@@ -171,6 +172,7 @@ public class Main extends Application {
             try{                                                                                                        //try-catch statement for file IO errors
 
                 getFile = new File(fileNames.get(i));
+                nameOfFIle = new File(fileNames.get(i)).getName();
                 OFFICIALNAME = getFile.getParent();
                 if(getFile.getPath().contains("spam")){
                     Name = "spam";
@@ -199,7 +201,7 @@ public class Main extends Application {
                         totalspam = 1.0; //calculateSpam(wordCount);
                         finalFileSpam = finalSpamCalculate(totalspam);
                         System.out.println(wordCount);
-                        fileRecord.add(new TestFile(fileNameFinal,finalFileSpam,Name));
+                        fileRecord.add(new TestFile(nameOfFIle,finalFileSpam,Name));
 
 
                     }
