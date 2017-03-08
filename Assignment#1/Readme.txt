@@ -1,0 +1,4 @@
+Student Name: Christien Soosaipillai
+Student ID: 100557844
+
+Im not very good with hash maps but here is my explanation of the code. What I did was basically crate the hash map to train the spam and ham maps. I was able to get all the maps to print however, when I am calculateing the final spam probability it keeps giving me the same probability value. Also for some reason it is not allowing me to add the values in the observable list that I have created. I'm not sure if I am processing this wrong however it is giving me a null pointer exception. I have all my code stated in main on how to create the actual table to hold the values. Also I am the only one working on this assignment.  
