@@ -6,9 +6,9 @@ package sample;
 import java.text.DecimalFormat;
 
 public class TestFile {
-    private String filename;
-    private double spamProbability;
-    private String actualClass;
+    public String filename;
+    public double spamProbability;
+    public String actualClass;
 
     public TestFile(String filename,
                     double spamProbability,

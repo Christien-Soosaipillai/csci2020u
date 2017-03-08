@@ -28,8 +28,8 @@ import java.util.*;
 
 public class Main extends Application {
     private Stage window;
-    private BorderPane layout;
-    private TableView<TestFile> table;
+    private BorderPane layout = new BorderPane();
+    private TableView<TestFile> table = new TableView<>();
     private TextField accuracy, precision;
     private Vector<String> fileNames = new Vector<String>();
 
@@ -216,7 +216,7 @@ public class Main extends Application {
 
         //Some Stage setup
         primaryStage.setTitle("Spam Master 3000");
-        table.setItems(fileRecord);
+
 
         TableColumn filenameCOl = new TableColumn("filename");
         TableColumn actualCLassCOl = new TableColumn("Actual Class");
@@ -226,11 +226,14 @@ public class Main extends Application {
         actualCLassCOl.setMinWidth(150);
         spamProbabilityCOL.setMinWidth(200);
 
-        table.getColumns().addAll(filenameCOl,actualCLassCOl,spamProbabilityCOL);
+
 
         filenameCOl.setCellValueFactory(new PropertyValueFactory<TestFile, String>("filename"));
         actualCLassCOl.setCellValueFactory(new PropertyValueFactory<TestFile, String>("ActualClass"));
         spamProbabilityCOL.setCellValueFactory(new PropertyValueFactory<TestFile, Double>("SpamProbRounded"));
+
+        table.setItems(fileRecord);
+        table.getColumns().addAll(filenameCOl,actualCLassCOl,spamProbabilityCOL);
 
 
         //spamTrain.printHashMapDouble(probFileIsSpam);
