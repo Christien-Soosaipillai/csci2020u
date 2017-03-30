@@ -11,7 +11,7 @@ public class sSocket {
     protected Socket clientConnection       = null;
     protected ServerSocket serverSocket     = null;
     //protected serverThreads[] threads = null
-    protected int numClients                = 0;
+    protected int numClients                = 1;
     protected Vector messages               = new Vector();
 
     public static int SERVER_PORT = 8080;
@@ -19,19 +19,22 @@ public class sSocket {
 
     public void startServer() {
         try {
+
+
+            serverSocket = new ServerSocket(SERVER_PORT);                                                               //Create a new Server Socket
+            System.out.println("Waiting for clients to connect....");
+
             while(true) {
 
-
-                serverSocket = new ServerSocket(SERVER_PORT);                                                               //Create a new Server Socket
-                clientConnection = serverSocket.accept();                                                                   //newSocket to accept connection request
+                clientConnection = serverSocket.accept();                                                               //newSocket to accept connection request
                 System.out.println("Connection Established! Welcome User " + numClients + "\n" );
-                numClients++;
-                chatThread cThread = new chatThread(clientConnection);
+                chatThread cThread = new chatThread(clientConnection,numClients);
                 Thread userThread = new Thread(cThread);
                 userThread.start();
+                numClients++;
 
             }
-            //InputStreamReader inputReader = new InputStreamReader(clientConnection.getInputStream());
+
 
         } catch (IOException e) {
             System.err.println(e);
